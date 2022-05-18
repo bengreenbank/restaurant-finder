@@ -13,30 +13,30 @@
       <nav>
         <ul class="flex items-center gap-6">
           <li>
-            <a
+            <router-link
+              to="/search"
               class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-              href="#"
             >
               Search
-            </a>
+            </router-link>
           </li>
 
           <li>
-            <a
+            <router-link
+              to="/add"
               class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-              href="#"
             >
               Add
-            </a>
+            </router-link>
           </li>
 
           <li>
-            <a
+            <router-link
+              to="/delete"
               class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-              href="#"
             >
               Delete
-            </a>
+            </router-link>
           </li>
         </ul>
       </nav>
