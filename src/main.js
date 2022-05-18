@@ -1,6 +1,11 @@
 // Import Vue CreateApp
 import { createApp } from 'vue'
+
+// Import Router
 import { createRouter, createWebHistory } from 'vue-router'
+
+// Import Algolia Vue InstantSearch
+import InstantSearch from 'vue-instantsearch/vue3/es'
 
 // Import CSS
 import './assets/fonts.css'
@@ -24,4 +29,4 @@ const router = createRouter({
 })
 
 // Create app, use plugins and mount.
-createApp(HomePage).use(router).mount('#app')
+createApp(HomePage).use(router).use(InstantSearch).mount('#app')
