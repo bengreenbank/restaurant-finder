@@ -1,6 +1,6 @@
 // Import Vue CreateApp
 import { createApp } from 'vue'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 // Import CSS
 import './assets/fonts.css'
@@ -19,7 +19,7 @@ const routes = [
 // Create router instance
 const router = createRouter({
   // Provide the history implementation to use. We are using the hash history for simplicity here.
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes, // short for `routes: routes`
 })
 
