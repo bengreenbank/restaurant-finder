@@ -2,16 +2,21 @@
   <ais-instant-search
     index-name="restaurant-finder_dev"
     :search-client="searchClient"
+    class="container"
   >
-    <!-- Widgets -->
+    <SearchBox />
+
+    <ais-hits />
   </ais-instant-search>
 </template>
 
 <script>
 import algoliasearch from 'algoliasearch/lite'
+import SearchBox from '@/components/SearchBox'
 
 export default {
   name: 'InstantSearch',
+  components: { SearchBox },
   data() {
     return {
       searchClient: algoliasearch(
