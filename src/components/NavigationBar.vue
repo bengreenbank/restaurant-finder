@@ -1,7 +1,7 @@
 <template>
   <header class="container font-sans">
     <div
-      class="border-b-solid flex items-center justify-between border-b border-b-grey py-6"
+      class="border-b-solid flex items-center justify-between gap-6 border-b border-b-grey py-6"
     >
       <img
         src="@/assets/img/icons/restaurant-menu.svg"
