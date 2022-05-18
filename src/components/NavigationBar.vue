@@ -12,32 +12,11 @@
 
       <nav>
         <ul class="flex items-center gap-6">
-          <li>
-            <router-link
-              to="/search"
-              class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-            >
-              Search
-            </router-link>
-          </li>
+          <NavigationItem to="/" text="Search" />
 
-          <li>
-            <router-link
-              to="/add"
-              class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-            >
-              Add
-            </router-link>
-          </li>
+          <NavigationItem to="/add" text="Add" />
 
-          <li>
-            <router-link
-              to="/delete"
-              class="decoration-blue decoration-2 underline-offset-4 transition-all hover:underline"
-            >
-              Delete
-            </router-link>
-          </li>
+          <NavigationItem to="/delete" text="Delete" />
         </ul>
       </nav>
 
@@ -60,8 +39,10 @@
 </template>
 
 <script>
+import NavigationItem from '@/components/NavigationItem'
 export default {
   name: 'NavigationBar',
+  components: { NavigationItem },
 }
 </script>
 
