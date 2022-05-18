@@ -1,11 +1,11 @@
 <template>
-  <navigation></navigation>
+  <navigation-bar />
 </template>
 
 <script>
-import Navigation from '@/components/Navigation'
+import NavigationBar from '@/components/NavigationBar'
 export default {
   name: 'App',
-  components: { Navigation },
+  components: { NavigationBar },
 }
 </script>
