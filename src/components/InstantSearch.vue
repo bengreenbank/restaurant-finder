@@ -6,17 +6,22 @@
   >
     <SearchBox />
 
-    <ais-hits />
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-6">
+      <SearchSidebar />
+
+      <ais-hits />
+    </div>
   </ais-instant-search>
 </template>
 
 <script>
 import algoliasearch from 'algoliasearch/lite'
 import SearchBox from '@/components/SearchBox'
+import SearchSidebar from '@/components/SearchSidebar'
 
 export default {
   name: 'InstantSearch',
-  components: { SearchBox },
+  components: { SearchSidebar, SearchBox },
   data() {
     return {
       searchClient: algoliasearch(
