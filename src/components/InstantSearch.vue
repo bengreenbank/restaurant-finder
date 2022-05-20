@@ -6,7 +6,7 @@
   >
     <SearchBox />
 
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-6">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <SearchSidebar />
 
       <ais-hits />

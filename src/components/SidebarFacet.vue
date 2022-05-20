@@ -35,7 +35,7 @@
 
         <li>
           <button
-            class="mt-4 flex w-full cursor-pointer items-center justify-between gap-2 rounded bg-blue px-3 py-2 text-sm text-white disabled:cursor-auto disabled:opacity-20"
+            class="mt-4 flex min-w-max cursor-pointer items-center justify-between gap-2 rounded bg-blue px-3 py-2 text-sm text-white disabled:cursor-auto disabled:opacity-20"
             :disabled="!canToggleShowMore"
             @click="toggleShowMore"
           >
