@@ -1,7 +1,7 @@
 <template>
-  <ais-current-refinements class="my-8 flex justify-center">
+  <ais-current-refinements>
     <template v-slot="{ items, createURL }">
-      <ul class="flex gap-4">
+      <ul class="my-8 flex justify-center gap-4">
         <li
           v-for="item in items"
           :key="item.attribute"
