@@ -3,7 +3,10 @@ module.exports = {
   theme: {
     colors: {
       grey: '#D1D5DB',
-      blue: '#5468ff',
+      blue: {
+        light: '#59c3ff',
+        DEFAULT: '#5468ff',
+      },
       white: '#ffffff',
     },
     fontFamily: {

@@ -11,9 +11,7 @@
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
       <SearchSidebar />
 
-      <div class="col-span-9">
-        <ais-hits />
-      </div>
+      <ResultsGrid />
     </div>
   </ais-instant-search>
 </template>
@@ -23,10 +21,11 @@ import algoliasearch from 'algoliasearch/lite'
 import SearchBox from '@/components/SearchBox'
 import SearchSidebar from '@/components/SearchSidebar'
 import CurrentRefinements from '@/components/CurrentRefinements'
+import ResultsGrid from '@/components/ResultsGrid'
 
 export default {
   name: 'InstantSearch',
-  components: { CurrentRefinements, SearchSidebar, SearchBox },
+  components: { ResultsGrid, CurrentRefinements, SearchSidebar, SearchBox },
   data() {
     return {
       searchClient: algoliasearch(
