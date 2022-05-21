@@ -57,6 +57,17 @@
     </div>
   </li>
 
+  <li
+    v-else
+    class="relative flex flex-col items-center justify-center gap-4 overflow-hidden rounded border border-grey shadow transition-shadow"
+  >
+    Item Deleted
+
+    <button class="cursor-pointer underline" @click="addObject(item)">
+      Undo
+    </button>
+  </li>
+
   <AlertBox
     v-if="isDeleted"
     heading="Item deleted"
@@ -93,6 +104,7 @@ export default {
   data() {
     return {
       isDeleted: false,
+      client: algoliasearch('DFY2HEF3K2', 'e87e0e6ab2d84a8d6dcce4e391699038'),
     }
   },
   mounted() {
@@ -102,20 +114,21 @@ export default {
   methods: {
     deleteObject(objectID) {
       if (confirm('Are you sure you want to delete this item?')) {
-        // Connect and authenticate with Algolia app
-        const client = algoliasearch(
-          'DFY2HEF3K2',
-          'e87e0e6ab2d84a8d6dcce4e391699038'
-        )
-
         // Get index to delete object from
-        const index = client.initIndex('restaurant-finder_dev')
+        const index = this.client.initIndex('restaurant-finder_dev')
 
         // Delete object from index.
         index.deleteObject(objectID).then(() => {
           this.isDeleted = true
         })
       }
+    },
+    addObject(object) {
+      const index = this.client.initIndex('restaurant-finder_dev')
+
+      index.saveObject(object)
+
+      this.isDeleted = false
     },
   },
   computed: {
