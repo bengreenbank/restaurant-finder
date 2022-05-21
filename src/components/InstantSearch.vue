@@ -13,6 +13,11 @@
 
       <ResultsGrid />
     </div>
+
+    <div class="my-8 flex justify-between">
+      <div></div>
+      <ResultsStats />
+    </div>
   </ais-instant-search>
 </template>
 
@@ -22,10 +27,17 @@ import SearchBox from '@/components/SearchBox'
 import SearchSidebar from '@/components/SearchSidebar'
 import CurrentRefinements from '@/components/CurrentRefinements'
 import ResultsGrid from '@/components/ResultsGrid'
+import ResultsStats from '@/components/ResultsStats'
 
 export default {
   name: 'InstantSearch',
-  components: { ResultsGrid, CurrentRefinements, SearchSidebar, SearchBox },
+  components: {
+    ResultsStats,
+    ResultsGrid,
+    CurrentRefinements,
+    SearchSidebar,
+    SearchBox,
+  },
   data() {
     return {
       searchClient: algoliasearch(
