@@ -4,6 +4,8 @@
     :search-client="searchClient"
     class="container"
   >
+    <ais-configure :hits-per-page.camel="8" />
+
     <SearchBox />
 
     <CurrentRefinements />
@@ -12,11 +14,14 @@
       <SearchSidebar />
 
       <ResultsGrid />
-    </div>
 
-    <div class="my-8 flex justify-between">
-      <div></div>
-      <ResultsStats />
+      <div class="col-span-9 col-start-4 my-8 flex justify-between">
+        <div></div>
+
+        <PaginationButtons />
+
+        <ResultsStats />
+      </div>
     </div>
   </ais-instant-search>
 </template>
@@ -28,10 +33,12 @@ import SearchSidebar from '@/components/SearchSidebar'
 import CurrentRefinements from '@/components/CurrentRefinements'
 import ResultsGrid from '@/components/ResultsGrid'
 import ResultsStats from '@/components/ResultsStats'
+import PaginationButtons from '@/components/PaginationButtons'
 
 export default {
   name: 'InstantSearch',
   components: {
+    PaginationButtons,
     ResultsStats,
     ResultsGrid,
     CurrentRefinements,
