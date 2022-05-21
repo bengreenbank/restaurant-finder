@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "algoliasearch": "^4.13.1",
+    "aos": "^2.3.4",
     "autoprefixer": "^10",
     "core-js": "^3.8.3",
     "postcss": "^8",

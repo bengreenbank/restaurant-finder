@@ -1,6 +1,8 @@
 <template>
   <li
     class="relative flex flex-col overflow-hidden rounded border border-grey shadow transition-shadow hover:shadow-lg"
+    data-aos="fade-up"
+    :data-aos-delay="animationDelay"
   >
     <div
       class="absolute top-0 left-0 flex items-center gap-1 rounded-br-lg bg-white px-2 py-1"
@@ -47,6 +49,11 @@
 
 <script>
 import CardButton from '@/components/CardButton'
+
+// Import AOS library https://www.npmjs.com/package/aos
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 export default {
   name: 'GridCard',
   components: { CardButton },
@@ -55,10 +62,21 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+  mounted() {
+    // Initialise Animate On Scroll
+    AOS.init()
   },
   computed: {
     fullAddress() {
       return `${this.item.address}, ${this.item.area}, ${this.item.postal_code}`
+    },
+    animationDelay() {
+      return this.index * 50
     },
   },
 }
