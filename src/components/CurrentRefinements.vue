@@ -1,7 +1,9 @@
 <template>
+  <!-- Uses custom AIS component to show the user which refinements they have made. Supports multiple attributes, for example cuisine type and rating etc. -->
   <ais-current-refinements>
     <template v-slot="{ items, createURL }">
       <ul class="my-8 flex justify-center gap-4">
+        <!-- Group the refinements by attribute type -->
         <li
           v-for="item in items"
           :key="item.attribute"
@@ -10,6 +12,7 @@
           <span class="capitalize"> {{ item.label.replace('_', ' ') }}: </span>
 
           <ul>
+            <!-- For each selected refinement in the current items, display the following code: -->
             <li
               v-for="refinement in item.refinements"
               :key="
@@ -44,9 +47,12 @@
 </template>
 
 <script>
+import { AisCurrentRefinements } from 'vue-instantsearch/vue3/es'
+
 export default {
   name: 'CurrentRefinements',
+  components: {
+    AisCurrentRefinements,
+  },
 }
 </script>
-
-<style scoped></style>

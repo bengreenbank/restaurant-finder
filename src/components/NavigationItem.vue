@@ -1,4 +1,5 @@
 <template>
+  <!-- Use Vue's router-link component to open different pages of the app. -->
   <li>
     <router-link
       :to="to"

@@ -1,4 +1,5 @@
 <template>
+  <!-- This is the navigation header for our application. -->
   <header class="container font-sans">
     <div
       class="border-b-solid flex items-center justify-between gap-6 border-b border-b-grey py-6"
@@ -12,14 +13,14 @@
 
       <nav>
         <ul class="flex items-center gap-6">
+          <!-- I created a custom navigation item component to avoid repetition. -->
           <NavigationItem to="/" text="Search" />
 
           <NavigationItem to="/add" text="Add" />
-
-          <NavigationItem to="/delete" text="Delete" />
         </ul>
       </nav>
 
+      <!-- View the code for this app on GitHub! @bengreenbank -->
       <a
         class="flex items-center gap-2.5 rounded bg-blue px-3 py-2 text-sm text-white"
         href="https://github.com/bengreenbank/restaurant-finder"
@@ -40,10 +41,9 @@
 
 <script>
 import NavigationItem from '@/components/NavigationItem'
+
 export default {
   name: 'NavigationBar',
   components: { NavigationItem },
 }
 </script>
-
-<style scoped></style>

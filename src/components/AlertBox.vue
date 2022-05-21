@@ -1,4 +1,5 @@
 <template>
+  <!--  Simple alert box component with text. Runs 'close' method on button click. -->
   <div
     v-if="show"
     class="fixed bottom-4 left-4 z-50 flex max-w-md flex-col items-start gap-4 rounded-lg border border-grey bg-white p-6 shadow-xl"
@@ -40,8 +41,10 @@ export default {
   },
   data() {
     return {
+      // Whether to show the alert banner.
       show: {
         type: Boolean,
+        // Starts at false to avoid showing every banner in the app on load.
         default: false,
       },
     }
@@ -51,11 +54,10 @@ export default {
     AOS.init()
   },
   methods: {
+    // Close the banner by amending the data property.
     closeAlert() {
       this.show = false
     },
   },
 }
 </script>
-
-<style scoped></style>

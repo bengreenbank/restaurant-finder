@@ -1,4 +1,5 @@
 <template>
+  <!-- Simple button for cards. Support text, URL, icon and window target attribute. -->
   <a
     :href="link"
     :target="target"
@@ -7,6 +8,7 @@
   >
     {{ text }}
 
+    <!-- Alternative text not required, as icons is described by the adjacent text-->
     <img :src="iconUrl" width="25" height="25" alt="" />
   </a>
 </template>
@@ -28,6 +30,7 @@ export default {
     },
     target: {
       type: String,
+      // Defaults to new window, as all card buttons are external 'conversion' links.
       default: '_blank',
     },
     additionalClasses: {
@@ -36,5 +39,3 @@ export default {
   },
 }
 </script>
-
-<style scoped></style>

@@ -1,4 +1,5 @@
 <template>
+  <!-- The search box allows the user to type a custom query. This will search the 'searchable attributes' in the Algolia index. -->
   <ais-search-box>
     <template v-slot="{ currentRefinement, isSearchStalled, refine }">
       <div class="my-12 mx-auto max-w-lg">
@@ -12,8 +13,10 @@
             placeholder="Search for your favorite restaurant..."
             @input="refine($event.currentTarget.value)"
           />
+          <!-- For slow connections, such as a mobile device with poor service. -->
           <span :hidden="!isSearchStalled">Loading...</span>
 
+          <!-- This helps illustrate the function of the search box as a whole. As we use 'instant' search, this does not need to be a functional button. -->
           <div class="flex w-14 items-center justify-center bg-blue">
             <img
               src="@/assets/img/icons/search--white.svg"
@@ -29,9 +32,12 @@
 </template>
 
 <script>
+import { AisSearchBox } from 'vue-instantsearch/vue3/es'
+
 export default {
   name: 'SearchBox',
+  components: {
+    AisSearchBox,
+  },
 }
 </script>
-
-<style scoped></style>

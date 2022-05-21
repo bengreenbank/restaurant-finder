@@ -27,7 +27,11 @@
 </template>
 
 <script>
+import { AisInstantSearch, AisConfigure } from 'vue-instantsearch/vue3/es'
+
 import algoliasearch from 'algoliasearch/lite'
+
+// Import our custom components.
 import SearchBox from '@/components/SearchBox'
 import SearchSidebar from '@/components/SearchSidebar'
 import CurrentRefinements from '@/components/CurrentRefinements'
@@ -38,6 +42,8 @@ import PaginationButtons from '@/components/PaginationButtons'
 export default {
   name: 'InstantSearch',
   components: {
+    AisInstantSearch,
+    AisConfigure,
     PaginationButtons,
     ResultsStats,
     ResultsGrid,
@@ -47,6 +53,7 @@ export default {
   },
   data() {
     return {
+      // TODO: Multiple instances of this in diff components. Initialise the search client for Algolia InstantSearch.
       searchClient: algoliasearch(
         'DFY2HEF3K2',
         '9848dca93fbcb86c6ad80832b8ce7f75'
