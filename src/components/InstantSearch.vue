@@ -15,7 +15,7 @@
 
       <ResultsGrid />
 
-      <div class="col-span-9 col-start-4 my-8 flex justify-between">
+      <div class="my-8 flex justify-between lg:col-span-9 lg:col-start-4">
         <div></div>
 
         <PaginationButtons />
