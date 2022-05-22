@@ -4,12 +4,17 @@
     :href="link"
     :target="target"
     :class="additionalClasses"
-    class="mt-auto flex w-1/2 cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm text-white"
+    class="mt-auto w-1/2 cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm text-white"
   >
     {{ text }}
 
     <!-- Alternative text not required, as icons is described by the adjacent text-->
-    <img :src="iconUrl" width="25" height="25" alt="" />
+    <img
+      src="@/assets/img/icons/open-in-new--white.svg"
+      width="20"
+      height="20"
+      alt=""
+    />
   </a>
 </template>
 
@@ -24,9 +29,6 @@ export default {
     link: {
       type: String,
       required: true,
-    },
-    iconUrl: {
-      type: String,
     },
     target: {
       type: String,

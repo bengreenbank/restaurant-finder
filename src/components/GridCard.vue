@@ -53,15 +53,26 @@
     </div>
 
     <div class="mt-auto flex">
-      <!-- TODO: I created a custom button component for the conversion actions to avoid repetition. -->
+      <!-- I created a custom button component for the conversion actions to avoid repetition. -->
       <CardButton
-        text="Book"
+        class="flex"
+        text="Call"
         :link="'tel:' + item.phone"
         additional-classes="bg-blue-light"
       />
 
+      <!-- There is a mobile reservation URL in the index, however the link doesn't go anyway. I believe this is because opentable now doesn't have a specific mobile subdomain. -->
+      <!-- However I have kept this here to demonstrate rendering components on different devices. -->
       <CardButton
-        text="Call"
+        class="flex lg:hidden"
+        text="Reserve"
+        :link="item.mobile_reserve_url"
+        additional-classes="bg-blue"
+      />
+
+      <CardButton
+        class="hidden lg:flex"
+        text="Reserve"
         :link="item.reserve_url"
         additional-classes="bg-blue"
       />
