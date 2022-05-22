@@ -11,15 +11,6 @@
         height="48"
       />
 
-      <nav>
-        <ul class="flex items-center gap-6">
-          <!-- I created a custom navigation item component to avoid repetition. -->
-          <NavigationItem to="/" text="Search" />
-
-          <NavigationItem to="/add" text="Add" />
-        </ul>
-      </nav>
-
       <!-- View the code for this app on GitHub! @bengreenbank -->
       <a
         class="flex items-center gap-2.5 rounded bg-blue px-3 py-2 text-sm text-white"
@@ -40,10 +31,7 @@
 </template>
 
 <script>
-import NavigationItem from '@/components/NavigationItem'
-
 export default {
   name: 'NavigationBar',
-  components: { NavigationItem },
 }
 </script>
