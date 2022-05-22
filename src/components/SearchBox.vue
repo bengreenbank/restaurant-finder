@@ -1,18 +1,14 @@
 <template>
   <!-- The search box allows the user to type a custom query. This will search the 'searchable attributes' in the Algolia index. -->
   <ais-search-box>
-    <template v-slot="{ currentRefinement, isSearchStalled, refine }">
+    <template v-slot="{ isSearchStalled }">
       <div class="my-12 mx-auto max-w-lg">
         <div
           class="group flex w-full items-stretch overflow-hidden rounded-md border border-solid border-grey"
         >
-          <input
-            type="search"
-            class="grow p-4 group-focus:shadow group-focus:shadow-blue group-focus:ring-0"
-            :value="currentRefinement"
-            placeholder="Search for your favorite restaurant..."
-            @input="refine($event.currentTarget.value)"
-          />
+          <!-- We use debouncing to optimise the number of search queries. More info in the component. -->
+          <DebouncedSearchBox />
+
           <!-- For slow connections, such as a mobile device with poor service. -->
           <span :hidden="!isSearchStalled">Loading...</span>
 
@@ -33,10 +29,12 @@
 
 <script>
 import { AisSearchBox } from 'vue-instantsearch/vue3/es'
+import DebouncedSearchBox from '@/components/DebouncedSearchBox'
 
 export default {
   name: 'SearchBox',
   components: {
+    DebouncedSearchBox,
     AisSearchBox,
   },
 }
