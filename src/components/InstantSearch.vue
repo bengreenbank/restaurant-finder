@@ -15,9 +15,9 @@
 
       <ResultsGrid />
 
-      <div class="my-8 flex justify-between lg:col-span-9 lg:col-start-4">
-        <div></div>
-
+      <div
+        class="my-8 flex flex-col items-center justify-between gap-6 px-4 lg:col-span-9 lg:col-start-4"
+      >
         <PaginationButtons />
 
         <ResultsStats />

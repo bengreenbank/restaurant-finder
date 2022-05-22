@@ -35,7 +35,11 @@
     </div>
 
     <!-- Imagery is important, especially for restaurants! -->
-    <img :src="item.image_url" class="h-44 w-full object-cover" alt="" />
+    <img
+      :src="item.image_url"
+      class="aspect-video w-full object-cover"
+      alt=""
+    />
 
     <div class="flex grow flex-col p-4">
       <h2 class="mb-1 font-semibold">
@@ -43,7 +47,7 @@
       </h2>
 
       <!-- The address is a computed value that combines address, city and postcode information. See more below. -->
-      <p class="mb-3">
+      <p class="mb-3 text-sm">
         {{ fullAddress }}
       </p>
     </div>

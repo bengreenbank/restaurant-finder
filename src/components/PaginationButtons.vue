@@ -12,7 +12,7 @@
         createURL,
       }"
     >
-      <ul class="flex items-center gap-4">
+      <ul class="flex items-center gap-3 lg:gap-4">
         <!-- Button that returns to page 1 (actually page 0) -->
         <li
           v-if="!isFirstPage"
@@ -35,7 +35,7 @@
         </li>
 
         <!-- For every page within the (current range of pages) show a link to that page. -->
-        <li v-for="page in pages" :key="page">
+        <li v-for="page in pages.slice(0, 3)" :key="page">
           <a
             :href="createURL(page)"
             :class="{ 'font-semibold': page === currentRefinement }"
