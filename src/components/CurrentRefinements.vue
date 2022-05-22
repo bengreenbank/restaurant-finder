@@ -7,7 +7,7 @@
         <li
           v-for="item in items"
           :key="item.attribute"
-          class="flex items-center gap-4 text-lg"
+          class="flex flex-col items-center gap-4 lg:flex-row lg:text-lg"
         >
           <span class="capitalize"> {{ item.label.replace('_', ' ') }}: </span>
 
