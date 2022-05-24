@@ -4,7 +4,7 @@
     class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/60 p-4"
   >
     <FormKit
-      v-if="!submissionSuccess"
+      v-if="!this.submissionModalStore.isSuccessfulSubmission"
       :config="{
         classes: {
           form: '$reset flex w-[600px] overflow-scroll max-h-full flex-col gap-3 rounded-lg bg-white p-10',
@@ -31,7 +31,7 @@
       />
 
       <div
-        class="grid grid-cols-2 gap-x-6 gap-y-3 rounded border border-grey p-4"
+        class="grid gap-x-6 gap-y-3 rounded border border-grey p-4 lg:grid-cols-2"
       >
         <FormKit
           type="text"
@@ -141,6 +141,7 @@
           label="Country*"
           name="country"
           validation="required|is:US"
+          validation-visibility="dirty"
           :validation-messages="{
             is: 'Sorry, we only accept submissions from restaurants in the US.',
           }"
