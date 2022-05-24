@@ -1,5 +1,6 @@
 // Import Vue CreateApp
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
 // Import CSS
 import './assets/fonts.css'
@@ -13,4 +14,4 @@ import HomePage from './HomePage'
 import { plugin, defaultConfig } from '@formkit/vue'
 
 // Create app and mount to div.
-createApp(HomePage).use(plugin, defaultConfig).mount('#app')
+createApp(HomePage).use(plugin, defaultConfig, createPinia).mount('#app')
