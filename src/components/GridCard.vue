@@ -9,6 +9,7 @@
   >
     <!-- Uses the rounded start count from the index to display a simple star rating -->
     <div
+      v-show="item.rounded_stars_count"
       class="absolute top-0 left-0 flex items-center gap-1 rounded-br-lg bg-white px-2 py-1"
     >
       {{ item.rounded_stars_count }}
@@ -62,17 +63,10 @@
         additional-classes="bg-blue-light"
       />
 
-      <!-- There is a mobile reservation URL in the index, however the link doesn't go anyway. I believe this is because opentable now doesn't have a specific mobile subdomain. -->
-      <!-- However I have kept this here to demonstrate rendering components on different devices. -->
+      <!-- There is a mobile reservation URL in the index, however the link doesn't go anywhere. I believe this is because opentable now doesn't have a specific mobile subdomain. -->
+      <!-- Therefore I have not rendered this URL -->
       <CardButton
-        class="flex lg:hidden"
-        text="Reserve"
-        :link="item.mobile_reserve_url"
-        additional-classes="bg-blue"
-      />
-
-      <CardButton
-        class="hidden lg:flex"
+        class="flex"
         text="Reserve"
         :link="item.reserve_url"
         additional-classes="bg-blue"
