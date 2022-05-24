@@ -1,8 +1,12 @@
 <template>
+  <!-- This modal is a popup form that uses FormKit (https://formkit.com/) to handle submissions to the index. -->
+  <!-- I only display the form if the state is in 'visible' mode. This is handled using a Boolean in the Pinia Store. -->
   <div
     v-show="submissionModalStore.isModalVisible"
     class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/60 p-4"
   >
+    <!-- I don't want to show the form once the user has made a successful submission, so I use another state to track the submission status. -->
+    <!-- On form submission, I check for validation errors and then add the restaurant to the index using the data in the form. -->
     <FormKit
       v-if="!submissionModalStore.isSuccessfulSubmission"
       :config="{
@@ -14,6 +18,7 @@
       submit-label="Add my restaurant!"
       @submit="addRestaurant()"
     >
+      <!-- I also included a close button here in case the user wants to leave the modal. -->
       <button
         class="absolute top-4 right-4 underline"
         @click="submissionModalStore.toggleModal()"
@@ -21,6 +26,8 @@
         Close
       </button>
 
+      <!-- The following inputs are where the user enters the form data. -->
+      <!-- There are various validation rules on each input, to ensure the index has consistent data. -->
       <FormKit
         type="text"
         v-model="name"
@@ -72,12 +79,16 @@
           validation="required|alpha-spaces"
         />
 
+        <!--
+          There's no 'easy' way of doing this that I know of. There is no need for this data to be reactive
+          (it's not changing any time soon!). So I hard-coded the values.
+        -->
         <FormKit
           type="select"
           v-model="state"
           label="State*"
           name="state"
-          validation="required|"
+          validation="required"
           :options="{
             AL: 'Alabama',
             AK: 'Alaska',
@@ -142,19 +153,24 @@
           step="1"
         />
 
+        <!-- Seeing as all 5000 records were inside the US, I decided that this finder would only allow submissions from "US' restaurants. -->
+        <!-- Sorry to us Europeans! -->
+        <!-- I kept validation here, just in case the user manually enables the input again. -->
         <FormKit
           type="text"
+          disabled=""
           v-model="country"
           label="Country*"
           name="country"
           validation="required|is:US"
-          validation-visibility="dirty"
+          help="We only accept submissions from restaurants in the United States."
           :validation-messages="{
             is: 'Sorry, we only accept submissions from restaurants in the US.',
           }"
         />
       </div>
 
+      <!-- There are actually two formats on phone number in the index. However, this is the one I use on the frontend. -->
       <FormKit
         type="tel"
         label="Phone Number*"
@@ -186,6 +202,7 @@
       />
 
       <div class="flex items-center gap-8">
+        <!-- I thought a slider would be good here to illustrate that this can be a range from 1-5 -->
         <FormKit
           v-model="price"
           type="range"
@@ -211,6 +228,7 @@
       </small>
     </FormKit>
 
+    <!-- This displays once the submission promise returns successfully. -->
     <div
       v-else
       class="flex w-max flex-col items-center gap-6 rounded-lg bg-white p-10"
@@ -229,6 +247,8 @@
 
 <script>
 import algoliasearch from 'algoliasearch'
+
+// I need to get the Pinia store data and methods.
 import { useSubmissionModalStore } from '@/store/SubmissionModal'
 
 export default {
@@ -267,6 +287,7 @@ export default {
       // Get index to add object to.
       const index = this.client.initIndex('restaurant-finder_dev')
 
+      // Here we save a single object/record to the index using the JS API function.
       index
         .saveObject(
           {
@@ -285,14 +306,12 @@ export default {
             reserve_url: this.reserveUrl,
           },
           {
+            // I don't allow the user to enter an ID on the frontend. Instead, I allow Algolia to automatically generate one.
             autoGenerateObjectIDIfNotExist: true,
           }
         )
-        .catch((formData, node) => {
-          console.log(formData)
-          console.log(node)
-        })
         .then(() => {
+          // If the promise resolves, then I can change the successful submission boolean - which then shows the success message.
           this.submissionModalStore.isSuccessfulSubmission = true
         })
 
