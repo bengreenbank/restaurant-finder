@@ -1,7 +1,7 @@
 <template>
   <ais-instant-search
     index-name="restaurant-finder_dev"
-    :search-client="searchClient"
+    :search-client="algoliaClientStore.searchClient"
     class="container"
   >
     <ais-configure :hits-per-page.camel="8" />
@@ -29,8 +29,6 @@
 <script>
 import { AisInstantSearch, AisConfigure } from 'vue-instantsearch/vue3/es'
 
-import algoliasearch from 'algoliasearch/lite'
-
 // Import our custom components.
 import SearchBox from '@/components/SearchBox'
 import SearchSidebar from '@/components/SearchSidebar'
@@ -38,9 +36,17 @@ import CurrentRefinements from '@/components/CurrentRefinements'
 import ResultsGrid from '@/components/ResultsGrid'
 import ResultsStats from '@/components/ResultsStats'
 import PaginationButtons from '@/components/PaginationButtons'
+import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
 
 export default {
   name: 'InstantSearch',
+  setup() {
+    const algoliaClientStore = useAlgoliaClientStore()
+
+    return {
+      algoliaClientStore,
+    }
+  },
   components: {
     AisInstantSearch,
     AisConfigure,
@@ -50,15 +56,6 @@ export default {
     CurrentRefinements,
     SearchSidebar,
     SearchBox,
-  },
-  data() {
-    return {
-      // TODO: Multiple instances of this in diff components. Initialise the search client for Algolia InstantSearch.
-      searchClient: algoliasearch(
-        'DFY2HEF3K2',
-        '9848dca93fbcb86c6ad80832b8ce7f75'
-      ),
-    }
   },
 }
 </script>
