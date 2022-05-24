@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-start gap-3 rounded bg-blue p-4 text-white">
-    <h2 class="text-md">Own a business?</h2>
+    <h2 class="text-md">Own a restaurant?</h2>
 
     <p class="text-sm">Submit your details to be included in this finder!</p>
 
