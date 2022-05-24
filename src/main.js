@@ -14,4 +14,4 @@ import HomePage from './HomePage'
 import { plugin, defaultConfig } from '@formkit/vue'
 
 // Create app and mount to div.
-createApp(HomePage).use(plugin, defaultConfig, createPinia).mount('#app')
+createApp(HomePage).use(plugin, defaultConfig).use(createPinia()).mount('#app')

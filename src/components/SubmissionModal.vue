@@ -1,12 +1,18 @@
 <template>
   <div
-    v-if="showModal"
-    class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/60"
+    v-show="submissionModalStore.isModalVisible"
+    class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/60 p-4"
   >
-    <form
+    <FormKit
       v-if="!submissionSuccess"
-      class="flex w-[600px] flex-col gap-3 rounded-lg bg-white p-10"
-      @submit.prevent=""
+      :config="{
+        classes: {
+          form: '$reset flex w-[600px] overflow-scroll max-h-full flex-col gap-3 rounded-lg bg-white p-10',
+        },
+      }"
+      type="form"
+      submit-label="Add my restaurant!"
+      @submit="addRestaurant()"
     >
       <FormKit
         type="text"
@@ -191,17 +197,11 @@
         help="This can be found in your OpenTable account."
       />
 
-      <div class="col-span-2">
-        <FormKit
-          class="col-span-2"
-          type="submit"
-          help="Your submission will be available in the index shortly - that's the beauty of Algolia!"
-          @click="addRestaurant()"
-        >
-          Add my restaurant!
-        </FormKit>
-      </div>
-    </form>
+      <small>
+        After clicking, your submission will be available in the index
+        immediately - that's the beauty of Algolia!
+      </small>
+    </FormKit>
 
     <div
       v-else
@@ -211,7 +211,7 @@
 
       <button
         class="rounded bg-blue p-2.5 text-sm text-white"
-        @click="toggleModal"
+        @click="submissionModalStore.toggleModal()"
       >
         Return to finder
       </button>
@@ -221,13 +221,19 @@
 
 <script>
 import algoliasearch from 'algoliasearch'
+import { useSubmissionModalStore } from '@/store/SubmissionModal'
 
 export default {
   name: 'SubmissionModal',
+  setup() {
+    const submissionModalStore = useSubmissionModalStore()
+
+    return {
+      submissionModalStore,
+    }
+  },
   data() {
     return {
-      // Whether to show this modal
-      showModal: false,
       // Algolia client is used in 2 methods, so we declare here to avoid repetition.
       client: algoliasearch('DFY2HEF3K2', 'e87e0e6ab2d84a8d6dcce4e391699038'),
       // Form data:
@@ -274,15 +280,16 @@ export default {
             autoGenerateObjectIDIfNotExist: true,
           }
         )
+        .catch((formData, node) => {
+          console.log(formData)
+          console.log(node)
+        })
         .then(() => {
-          this.submissionSuccess = true
+          this.submissionModalStore.isSuccessfulSubmission = true
         })
 
       // Remember to update the isDeleted data property, so we can change the state of other parts of the card.
       this.isDeleted = false
-    },
-    toggleModal() {
-      this.showModal = !this.showModal
     },
   },
 }

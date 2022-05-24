@@ -4,12 +4,26 @@
 
     <p class="text-sm">Submit your details to be included in this finder!</p>
 
-    <button class="rounded bg-blue-light p-2.5 text-sm">Submit details</button>
+    <button
+      class="rounded bg-blue-light p-2.5 text-sm"
+      @click="submissionModalStore.toggleModal()"
+    >
+      Submit details
+    </button>
   </div>
 </template>
 
 <script>
+import { useSubmissionModalStore } from '@/store/SubmissionModal'
+
 export default {
   name: 'PromotionCard',
+  setup() {
+    const submissionModalStore = useSubmissionModalStore()
+
+    return {
+      submissionModalStore,
+    }
+  },
 }
 </script>
