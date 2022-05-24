@@ -2,14 +2,17 @@
   <NavigationBar />
 
   <InstantSearch />
+
+  <SubmissionModal />
 </template>
 
 <script>
 import NavigationBar from '@/components/NavigationBar'
 import InstantSearch from '@/components/InstantSearch'
+import SubmissionModal from '@/components/SubmissionModal'
 
 export default {
   name: 'HomePage',
-  components: { InstantSearch, NavigationBar },
+  components: { SubmissionModal, InstantSearch, NavigationBar },
 }
 </script>

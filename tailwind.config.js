@@ -2,6 +2,7 @@ module.exports = {
   content: ['./public/**/*.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     colors: {
+      black: '#000000',
       grey: '#D1D5DB',
       red: '#ff2a6a',
       blue: {
