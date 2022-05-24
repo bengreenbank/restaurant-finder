@@ -21,7 +21,7 @@
       />
     </div>
 
-    <!-- The user has the option to delete the item from the index. This is a very rare case scenario! -->
+    <!-- The user has the option to delete the item from the index. This is a very rare case scenario in real life! -->
     <div
       class="absolute top-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-bl-lg bg-red"
       @click="deleteObject(item.objectID)"
@@ -36,12 +36,13 @@
 
     <!-- Imagery is important, especially for restaurants! -->
     <img
+      v-if="item.image_url"
       :src="item.image_url"
       class="aspect-video w-full object-cover"
       alt=""
     />
 
-    <div class="flex grow flex-col p-4">
+    <div class="flex grow flex-col p-4" :class="{ 'pt-10': !item.image_url }">
       <h2 class="mb-1 font-semibold">
         {{ item.name }}
       </h2>
