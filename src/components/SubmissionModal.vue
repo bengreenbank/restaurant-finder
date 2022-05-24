@@ -4,16 +4,23 @@
     class="fixed inset-0 z-50 flex h-screen w-screen items-center justify-center bg-black/60 p-4"
   >
     <FormKit
-      v-if="!this.submissionModalStore.isSuccessfulSubmission"
+      v-if="!submissionModalStore.isSuccessfulSubmission"
       :config="{
         classes: {
-          form: '$reset flex w-[600px] overflow-scroll max-h-full flex-col gap-3 rounded-lg bg-white p-10',
+          form: '$reset relative flex w-[600px] overflow-scroll max-h-full flex-col gap-3 rounded-lg bg-white p-10',
         },
       }"
       type="form"
       submit-label="Add my restaurant!"
       @submit="addRestaurant()"
     >
+      <button
+        class="absolute top-4 right-4 underline"
+        @click="submissionModalStore.toggleModal()"
+      >
+        Close
+      </button>
+
       <FormKit
         type="text"
         v-model="name"
