@@ -52,9 +52,9 @@
         <FormKit
           type="text"
           v-model="area"
-          label="Area"
+          label="Area*"
           name="area"
-          validation="alpha-spaces"
+          validation="required|alpha-spaces"
         />
 
         <FormKit
