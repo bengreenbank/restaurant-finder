@@ -39,6 +39,9 @@
             </a>
           </li>
 
+          <!-- This is the 'empty state' for if there are no refinements/facets available. -->
+          <li v-if="items.length === 0">No refinements for your query!</li>
+
           <!-- There are a high number of attributes in this index, so we show the 5 most popular by default. -->
           <!-- If the user wishes to show more, they can press the button to toggle. -->
           <li>
@@ -72,7 +75,7 @@
     >
       <template v-slot="{ items, canRefine, refine }">
         <select
-          class="w-full rounded border border-grey bg-white p-4"
+          class="w-full rounded border border-grey bg-white p-4 disabled:opacity-20"
           :disabled="!canRefine"
           @change="refine($event.currentTarget.value)"
         >
