@@ -126,8 +126,9 @@ import AlertBox from '@/components/AlertBox'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-// Import Algolia JS API
-const algoliasearch = require('algoliasearch')
+// Import Pinia Store
+import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
+import algoliasearch from 'algoliasearch'
 
 export default {
   name: 'GridCard',
@@ -148,12 +149,22 @@ export default {
       required: true,
     },
   },
+  setup() {
+    const algoliaClientStore = useAlgoliaClientStore()
+
+    return {
+      algoliaClientStore,
+    }
+  },
   data() {
     return {
       // Items should not be in the 'deleted' state as default.
       isDeleted: false,
       // Algolia client is used in 2 methods, so we declare here to avoid repetition.
-      client: algoliasearch('DFY2HEF3K2', 'e87e0e6ab2d84a8d6dcce4e391699038'),
+      client: algoliasearch(
+        this.algoliaClientStore.appId,
+        this.algoliaClientStore.adminKey
+      ),
     }
   },
   mounted() {

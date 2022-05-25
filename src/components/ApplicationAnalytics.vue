@@ -86,6 +86,10 @@
 // I use moment to format '7 days ago', '30 days ago' into the correct format for the API request.
 import moment from 'moment'
 
+// Import Pinia store
+import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
+
+// Import Axios for API requests.
 const axios = require('axios').default
 
 export default {
@@ -98,6 +102,13 @@ export default {
       days: 7,
       // Boolean for whether the API query is running or not. Helps with conditional display for code above.
       isLoading: true,
+    }
+  },
+  setup() {
+    const algoliaClientStore = useAlgoliaClientStore()
+
+    return {
+      algoliaClientStore,
     }
   },
   methods: {
@@ -121,8 +132,8 @@ export default {
             startDate: this.startDate,
           },
           headers: {
-            'X-Algolia-Application-Id': 'DFY2HEF3K2',
-            'X-Algolia-API-Key': '2c8393d48638ce3d3ad9c2f2f866f553',
+            'X-Algolia-Application-Id': this.algoliaClientStore.appId,
+            'X-Algolia-API-Key': this.algoliaClientStore.analyticsKey,
           },
         })
         .then((response) => {

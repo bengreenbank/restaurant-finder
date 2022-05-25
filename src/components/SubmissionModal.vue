@@ -250,20 +250,26 @@ import algoliasearch from 'algoliasearch'
 
 // I need to get the Pinia store data and methods.
 import { useSubmissionModalStore } from '@/store/SubmissionModal'
+import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
 
 export default {
   name: 'SubmissionModal',
   setup() {
     const submissionModalStore = useSubmissionModalStore()
+    const algoliaClientStore = useAlgoliaClientStore()
 
     return {
       submissionModalStore,
+      algoliaClientStore,
     }
   },
   data() {
     return {
       // Algolia client is used in 2 methods, so we declare here to avoid repetition.
-      client: algoliasearch('DFY2HEF3K2', 'e87e0e6ab2d84a8d6dcce4e391699038'),
+      client: algoliasearch(
+        this.algoliaClientStore.appId,
+        this.algoliaClientStore.adminKey
+      ),
       // Form data:
       name: '',
       foodType: '',

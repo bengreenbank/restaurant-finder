@@ -53,8 +53,8 @@ export default {
   },
   mounted() {
     aa('init', {
-      appId: 'DFY2HEF3K2',
-      apiKey: '9848dca93fbcb86c6ad80832b8ce7f75',
+      appId: this.algoliaClientStore.appId,
+      apiKey: this.algoliaClientStore.apiKey,
       useCookie: true,
     })
   },
