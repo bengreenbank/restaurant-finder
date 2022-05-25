@@ -190,11 +190,13 @@ export default {
   },
   computed: {
     // Computed property here to avoid doing complex logic in the template.
+    // I cannot use an arrow function here, as 'this' would lose context.
     fullAddress() {
       return `${this.item.address}, ${this.item.area}, ${this.item.postal_code}`
     },
     animationDelay() {
       // Animations are calculated in milliseconds. So we multiply by 50ms. E.g. 50, 100, 150.
+      // I cannot use an arrow function here, as 'this' would lose context.
       return this.index * 50
     },
     paymentOptions() {
