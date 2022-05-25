@@ -3,7 +3,7 @@
   <!-- If the item has been deleted from the index by the user, an alternative card will display to explain this -->
   <li
     v-if="!isDeleted"
-    class="relative flex flex-col overflow-hidden rounded border border-grey shadow transition-shadow hover:shadow-lg"
+    class="relative flex flex-col overflow-hidden rounded border border-grey shadow transition-shadow hover:shadow-lg lg:min-h-[345px]"
     data-aos="fade-up"
     :data-aos-delay="animationDelay"
   >
@@ -43,14 +43,23 @@
       alt=""
     />
 
-    <div class="flex grow flex-col p-4" :class="{ 'pt-10': !item.image_url }">
-      <h2 class="mb-1 font-semibold">
+    <div
+      class="flex grow flex-col p-4 text-sm"
+      :class="{ 'pt-10': !item.image_url }"
+    >
+      <h2 class="mb-1 text-base font-semibold">
         {{ item.name }}
       </h2>
 
       <!-- The address is a computed value that combines address, city and postcode information. See more below. -->
-      <p class="mb-3 text-sm">
+      <p class="mb-1">
         {{ fullAddress }}
+      </p>
+
+      <p class="mb-3">
+        Price:
+
+        <span v-for="index in item.price" :key="index"> $ </span>
       </p>
     </div>
 
