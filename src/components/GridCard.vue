@@ -61,6 +61,7 @@
         text="Call"
         :link="'tel:' + item.phone"
         additional-classes="bg-blue-light"
+        @click="sendEvent('conversion', item, 'Restaurant Called')"
       />
 
       <!-- There is a mobile reservation URL in the index, however the link doesn't go anywhere. I believe this is because opentable now doesn't have a specific mobile subdomain. -->
@@ -70,6 +71,7 @@
         text="Reserve"
         :link="item.reserve_url"
         additional-classes="bg-blue"
+        @click="sendEvent('conversion', item, 'Restaurant Reserved')"
       />
     </div>
   </li>
@@ -120,6 +122,11 @@ export default {
     // We use this index to determine the animation on scroll delay for this card.
     index: {
       type: Number,
+      required: true,
+    },
+    // I use this to send click/conversion events to Algolia
+    sendEvent: {
+      type: Function,
       required: true,
     },
   },

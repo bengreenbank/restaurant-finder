@@ -1,7 +1,7 @@
 <template>
   <!-- This is the grid of results that displays. It uses our custom grid cards component and passes the items array to the for loop. -->
   <ais-hits class="col-span-9">
-    <template v-slot="{ items }">
+    <template v-slot="{ items, sendEvent }">
       <ul
         v-if="items.length >= 1"
         class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
@@ -11,6 +11,7 @@
           :index="index"
           v-for="(item, index) in items"
           :key="item.objectID"
+          :sendEvent="sendEvent"
         />
       </ul>
 
