@@ -305,7 +305,7 @@ export default {
             city: this.city,
             state: this.state,
             country: this.country,
-            paymentOptions: this.paymentOptions,
+            payment_options: this.paymentOptions,
             phone: this.phone,
             postal_code: this.postalCode,
             price: this.price,

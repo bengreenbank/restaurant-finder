@@ -63,11 +63,11 @@
       </p>
 
       <!-- The payment options are a computed value that combines all available payment options from the array. -->
-      <p class="mb-3">
+      <p class="mb-3" v-if="getPaymentOptions">
         <span class="font-semibold">Accepts: </span>
 
         <span>
-          {{ paymentOptions }}
+          {{ getPaymentOptions }}
         </span>
       </p>
     </div>
@@ -212,13 +212,16 @@ export default {
       // I cannot use an arrow function here, as 'this' would lose context.
       return this.index * 50
     },
-    paymentOptions() {
+    getPaymentOptions() {
       // I use this computed value to make the string of payment options for each item.
       let optionsString = ''
+      let options = this.item.payment_options ?? []
 
-      this.item.payment_options.forEach((option, key, options) => {
-        optionsString += key < options.length - 1 ? `${option}, ` : option
-      })
+      if (options) {
+        options.forEach((option, key, options) => {
+          optionsString += key < options.length - 1 ? `${option}, ` : option
+        })
+      }
 
       return optionsString
     },
