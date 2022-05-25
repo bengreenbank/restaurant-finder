@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisStats } from 'vue-instantsearch/vue3/es'
 
 export default {

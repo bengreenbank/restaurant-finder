@@ -97,6 +97,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisMenu, AisMenuSelect } from 'vue-instantsearch/vue3/es'
 
 export default {

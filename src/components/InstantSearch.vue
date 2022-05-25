@@ -20,6 +20,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisInstantSearch, AisConfigure } from 'vue-instantsearch/vue3/es'
 
 // Import our custom components.

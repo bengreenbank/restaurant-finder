@@ -47,6 +47,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisCurrentRefinements } from 'vue-instantsearch/vue3/es'
 
 export default {

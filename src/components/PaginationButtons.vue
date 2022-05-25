@@ -73,6 +73,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisPagination } from 'vue-instantsearch/vue3/es'
 
 export default {

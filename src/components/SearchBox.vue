@@ -28,6 +28,7 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisSearchBox } from 'vue-instantsearch/vue3/es'
 import DebouncedSearchBox from '@/components/DebouncedSearchBox'
 

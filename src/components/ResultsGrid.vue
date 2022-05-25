@@ -35,7 +35,9 @@
 </template>
 
 <script>
+// Tree shaking for optimal build size
 import { AisHits } from 'vue-instantsearch/vue3/es'
+
 import GridCard from '@/components/GridCard'
 import ResultsStats from '@/components/ResultsStats'
 import PaginationButtons from '@/components/PaginationButtons'
