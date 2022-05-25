@@ -107,7 +107,7 @@
     </button>
   </li>
 
-  <!-- TODO: We also display an alert box when an item is deleted. This also helps the user understand the action. -->
+  <!-- We also display an alert box when an item is deleted. This also helps the user understand the action. -->
   <AlertBox
     v-if="isDeleted"
     heading="Item deleted"
@@ -163,6 +163,8 @@ export default {
   methods: {
     deleteObject(objectID) {
       // As this is an important action, we ask the user for confirmation.
+      // It would also be possible to use a JavaScript promise here, with a custom confirmation modal.
+      // However, I chose the confirmation box method instead - for a built-in alert box.
       if (
         confirm(
           `Are you sure you want to delete ${this.item.name} from the index?`
