@@ -22,6 +22,14 @@
 
         Please widen your search parameters.
       </p>
+
+      <div
+        class="my-8 flex flex-col items-center justify-between gap-6 px-4 lg:col-span-9 lg:col-start-4"
+      >
+        <PaginationButtons />
+
+        <ResultsStats />
+      </div>
     </template>
   </ais-hits>
 </template>
@@ -29,9 +37,11 @@
 <script>
 import { AisHits } from 'vue-instantsearch/vue3/es'
 import GridCard from '@/components/GridCard'
+import ResultsStats from '@/components/ResultsStats'
+import PaginationButtons from '@/components/PaginationButtons'
 
 export default {
   name: 'ResultsGrid',
-  components: { AisHits, GridCard },
+  components: { AisHits, GridCard, ResultsStats, PaginationButtons },
 }
 </script>

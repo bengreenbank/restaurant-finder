@@ -15,14 +15,6 @@
       <SearchSidebar />
 
       <ResultsGrid />
-
-      <div
-        class="my-8 flex flex-col items-center justify-between gap-6 px-4 lg:col-span-9 lg:col-start-4"
-      >
-        <PaginationButtons />
-
-        <ResultsStats />
-      </div>
     </div>
   </ais-instant-search>
 </template>
@@ -35,8 +27,6 @@ import SearchBox from '@/components/SearchBox'
 import SearchSidebar from '@/components/SearchSidebar'
 import CurrentRefinements from '@/components/CurrentRefinements'
 import ResultsGrid from '@/components/ResultsGrid'
-import ResultsStats from '@/components/ResultsStats'
-import PaginationButtons from '@/components/PaginationButtons'
 import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
 
 // Import Insights.
@@ -71,8 +61,6 @@ export default {
   components: {
     AisInstantSearch,
     AisConfigure,
-    PaginationButtons,
-    ResultsStats,
     ResultsGrid,
     CurrentRefinements,
     SearchSidebar,
