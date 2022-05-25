@@ -25,3 +25,4 @@ Future enhancements:
 - Use TypeScript
 - Query name of analytics hits - instead of just displaying their Object ID.
 - More ordering and facet options.
+- More form fields, such as image upload.
