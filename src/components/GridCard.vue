@@ -44,22 +44,31 @@
     />
 
     <div
-      class="flex grow flex-col p-4 text-sm"
+      class="flex grow flex-col gap-1 p-4 text-sm"
       :class="{ 'pt-10': !item.image_url }"
     >
-      <h2 class="mb-1 text-base font-semibold">
+      <h2 class="text-base font-semibold">
         {{ item.name }}
       </h2>
 
       <!-- The address is a computed value that combines address, city and postcode information. See more below. -->
-      <p class="mb-1">
+      <p>
         {{ fullAddress }}
       </p>
 
-      <p class="mb-3">
-        Price:
+      <p>
+        <span class="font-semibold">Price: </span>
 
         <span v-for="index in item.price" :key="index"> $ </span>
+      </p>
+
+      <!-- The payment options are a computed value that combines all available payment options from the array. -->
+      <p class="mb-3">
+        <span class="font-semibold">Accepts: </span>
+
+        <span>
+          {{ paymentOptions }}
+        </span>
       </p>
     </div>
 
@@ -187,6 +196,16 @@ export default {
     animationDelay() {
       // Animations are calculated in milliseconds. So we multiply by 50ms. E.g. 50, 100, 150.
       return this.index * 50
+    },
+    paymentOptions() {
+      // I use this computed value to make the string of payment options for each item.
+      let optionsString = ''
+
+      this.item.payment_options.forEach((option, key, options) => {
+        optionsString += key < options.length - 1 ? `${option}, ` : option
+      })
+
+      return optionsString
     },
   },
 }
