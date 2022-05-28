@@ -25,7 +25,7 @@
     <!-- The user has the option to delete the item from the index. This is a very rare case scenario in real life! -->
     <div
       class="absolute top-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-bl-lg bg-red"
-      @click="deleteObject(item.objectID)"
+      @click="deleteObject()"
     >
       <img
         src="@/assets/img/icons/bin--white.svg"
@@ -128,7 +128,9 @@ import 'aos/dist/aos.css'
 
 // Import Pinia Store
 import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
-import algoliasearch from 'algoliasearch'
+
+// Import Axios for API requests.
+const axios = require('axios').default
 
 export default {
   name: 'GridCard',
@@ -160,11 +162,6 @@ export default {
     return {
       // Items should not be in the 'deleted' state as default.
       isDeleted: false,
-      // Algolia client is used in 2 methods, so we declare here to avoid repetition.
-      client: algoliasearch(
-        this.algoliaClientStore.appId,
-        this.algoliaClientStore.adminKey
-      ),
     }
   },
   mounted() {
@@ -172,33 +169,27 @@ export default {
     AOS.init()
   },
   methods: {
-    deleteObject(objectID) {
-      // As this is an important action, we ask the user for confirmation.
-      // It would also be possible to use a JavaScript promise here, with a custom confirmation modal.
-      // However, I chose the confirmation box method instead - for a built-in alert box.
+    deleteObject(objectID = this.item.objectID) {
       if (
+        // As this is an important action, we ask the user for confirmation.
+        // It would also be possible to use a JavaScript promise here, with a custom confirmation modal.
+        // However, I chose the confirmation box method instead - for a built-in alert box.
         confirm(
           `Are you sure you want to delete ${this.item.name} from the index?`
         )
       ) {
-        // Get index to delete object from
-        const index = this.client.initIndex('restaurant-finder_dev')
-
-        // Delete object from index.
-        index.deleteObject(objectID).then(() => {
-          // Remember to update the isDeleted data property, so we can change the state of other parts of the card.
-          this.isDeleted = true
-        })
+        axios
+          .post('/api/DeleteObject', {
+            objectID,
+          })
+          .then(() => {
+            this.isDeleted = true
+          })
+          // I like to output console errors for reference. If I had more time, I could add some kind of warning alert for when there is an error instead.
+          .catch((error) => {
+            console.error('Error:', error)
+          })
       }
-    },
-    addObject(object) {
-      // Get index to add object to.
-      const index = this.client.initIndex('restaurant-finder_dev')
-
-      index.saveObject(object)
-
-      // Remember to update the isDeleted data property, so we can change the state of other parts of the card.
-      this.isDeleted = false
     },
   },
   computed: {

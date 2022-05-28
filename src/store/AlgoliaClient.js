@@ -7,7 +7,6 @@ export const useAlgoliaClientStore = defineStore('algoliaClientStore', {
     return {
       appId: process.env.VUE_APP_ALGOLIA_APP_ID,
       apiKey: process.env.VUE_APP_ALGOLIA_API_KEY,
-      adminKey: process.env.VUE_APP_ALGOLIA_ADMIN_KEY,
       analyticsKey: process.env.VUE_APP_ALGOLIA_ANALYTICS_KEY,
     }
   },
