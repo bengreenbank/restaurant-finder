@@ -90,7 +90,7 @@ import moment from 'moment'
 import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
 
 // Import Axios for API requests.
-const axios = require('axios').default
+import { default as axios } from 'axios'
 
 export default {
   name: 'ApplicationAnalytics',

@@ -246,30 +246,23 @@
 </template>
 
 <script>
-import algoliasearch from 'algoliasearch'
-
 // I need to get the Pinia store data and methods.
 import { useSubmissionModalStore } from '@/store/SubmissionModal'
-import { useAlgoliaClientStore } from '@/store/AlgoliaClient'
+
+// Import Axios for API requests
+import { default as axios } from 'axios'
 
 export default {
   name: 'SubmissionModal',
   setup() {
     const submissionModalStore = useSubmissionModalStore()
-    const algoliaClientStore = useAlgoliaClientStore()
 
     return {
       submissionModalStore,
-      algoliaClientStore,
     }
   },
   data() {
     return {
-      // Algolia client is used in 2 methods, so we declare here to avoid repetition.
-      client: algoliasearch(
-        this.algoliaClientStore.appId,
-        this.algoliaClientStore.adminKey
-      ),
       // Form data:
       name: '',
       foodType: '',
@@ -290,13 +283,9 @@ export default {
   },
   methods: {
     addRestaurant() {
-      // Get index to add object to.
-      const index = this.client.initIndex('restaurant-finder_dev')
-
-      // Here we save a single object/record to the index using the JS API function.
-      index
-        .saveObject(
-          {
+      axios
+        .post('/api/AddObject', {
+          object: {
             name: this.name,
             food_type: this.foodType,
             address: this.address,
@@ -311,18 +300,15 @@ export default {
             price: this.price,
             reserve_url: this.reserveUrl,
           },
-          {
-            // I don't allow the user to enter an ID on the frontend. Instead, I allow Algolia to automatically generate one.
-            autoGenerateObjectIDIfNotExist: true,
-          }
-        )
+          autoGenerateObjectIDIfNotExist: true,
+        })
         .then(() => {
-          // If the promise resolves, then I can change the successful submission boolean - which then shows the success message.
           this.submissionModalStore.isSuccessfulSubmission = true
         })
-
-      // Remember to update the isDeleted data property, so we can change the state of other parts of the card.
-      this.isDeleted = false
+        // I like to output console errors for reference. If I had more time, I could add some kind of warning alert for when there is an error instead.
+        .catch((error) => {
+          console.error(error)
+        })
     },
   },
 }

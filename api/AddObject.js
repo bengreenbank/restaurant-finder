@@ -15,16 +15,20 @@ export default (request, response) => {
 
     // Avoid repetitive querying of request object.
     const object = request.body.object
+    const autoGenerateObjectIDIfNotExist =
+      request.body.autoGenerateObjectIDIfNotExist ?? false
 
     // Get index to add object to.
     const index = client.initIndex('restaurant-finder_dev')
 
     // Save object to the index: https://www.algolia.com/doc/api-reference/api-methods/save-objects/
     index
-      .saveObject(object)
+      .saveObject(object, { autoGenerateObjectIDIfNotExist })
       // If the promise is fulfilled, we can say that the item has been added successfully.
       .then(() => {
-        response.status(200).send(`${object.objectID} added to the index!`)
+        response
+          .status(200)
+          .send(`${object.objectID ?? object.name} added to the index!`)
       })
       // If Algolia returns an error, we need to return that same error to our frontend app
       .catch((error) => {
