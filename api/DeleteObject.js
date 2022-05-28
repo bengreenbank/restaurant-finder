@@ -13,12 +13,13 @@ export default (request, response) => {
       process.env.VUE_APP_ALGOLIA_ADMIN_KEY
     )
 
+    // Avoid repetitive querying of request object.
     let objectID = request.body.objectID
 
     // Get index to delete object from
     const index = client.initIndex('restaurant-finder_dev')
 
-    // Delete object from index.
+    // Delete object from index: https://www.algolia.com/doc/api-reference/api-methods/delete-objects/
     index
       .deleteObject(objectID)
       // If the promise is fulfilled, we can say that the item has been deleted.
