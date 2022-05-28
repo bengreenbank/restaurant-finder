@@ -102,9 +102,7 @@
     Item Deleted
 
     <!-- They also have the option to undo their action. As we still have access to the 'item' object, we can simply pass the data back to the addObject API method. -->
-    <button class="cursor-pointer underline" @click="addObject(item)">
-      Undo
-    </button>
+    <button class="cursor-pointer underline" @click="addObject()">Undo</button>
   </li>
 
   <!-- We also display an alert box when an item is deleted. This also helps the user understand the action. -->
@@ -187,9 +185,22 @@ export default {
           })
           // I like to output console errors for reference. If I had more time, I could add some kind of warning alert for when there is an error instead.
           .catch((error) => {
-            console.error('Error:', error)
+            console.error(error)
           })
       }
+    },
+    addObject(object = this.item) {
+      axios
+        .post('/api/AddObject', {
+          object,
+        })
+        .then(() => {
+          this.isDeleted = false
+        })
+        // I like to output console errors for reference. If I had more time, I could add some kind of warning alert for when there is an error instead.
+        .catch((error) => {
+          console.error(error)
+        })
     },
   },
   computed: {
