@@ -6,15 +6,16 @@ import algoliasearch from 'algoliasearch'
 // This API request runs the code with the admin API key in - this way, the browser never sees the admin key.
 
 export default (request, response) => {
-  if (request.body) {
+  // Avoid repetitive querying of request object.
+  const object = request.body.object
+
+  if (object) {
     // We initialise the client here, instead of on the frontend.
     const client = algoliasearch(
       process.env.VUE_APP_ALGOLIA_APP_ID,
       process.env.VUE_APP_ALGOLIA_ADMIN_KEY
     )
 
-    // Avoid repetitive querying of request object.
-    const object = request.body.object
     const autoGenerateObjectIDIfNotExist =
       request.body.autoGenerateObjectIDIfNotExist ?? false
 
